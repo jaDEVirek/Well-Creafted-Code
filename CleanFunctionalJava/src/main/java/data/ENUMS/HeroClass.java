@@ -4,7 +4,8 @@ public enum  HeroClass {
     WARRIOR("Melee"),
     ARCHER("Range"),
     HEALER("Light Magic"),
-    WIZARD("Fire Magic");
+    WIZARD("Fire Magic"),
+    NO_VOCATION("Fist");
 
     private final String attack;
 

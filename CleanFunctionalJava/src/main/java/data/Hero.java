@@ -1,6 +1,9 @@
-package main.java.data;
+package data;
 
 
+import com.github.javafaker.Animal;
+import data.ENUMS.HeroClass;
+import data.ENUMS.HeroWeapons;
 
 final public class Hero implements Comparable<Hero> {
 
@@ -8,12 +11,24 @@ final public class Hero implements Comparable<Hero> {
     private String name;
     private Integer level;
     private Animal animal;
+    private String weapons;
+    private HeroClass vocationClass;
 
-     Hero(Integer heroId, String name, Integer level, Animal animal) {
+    public HeroClass getVocationClass() {
+        return vocationClass;
+    }
+
+    public void setVocationClass(HeroClass vocationClass) {
+        this.vocationClass = vocationClass;
+    }
+
+    Hero(Integer heroId, String name, Integer level, Animal animal,String weapons,HeroClass vocationClass) {
         this.heroId = heroId;
         this.name = name;
         this.level = level;
         this.animal = animal;
+        this.weapons= weapons;
+        this.vocationClass=vocationClass;
     }
 
     public Integer getHeroId() {
@@ -48,17 +63,31 @@ final public class Hero implements Comparable<Hero> {
         this.animal = animal;
     }
 
+    public String getWeapons() {
+        return weapons;
+    }
+
+    public void setWeapons(String weapons) {
+        this.weapons = weapons;
+    }
+
+
     @Override public String toString() {
         final StringBuffer sb = new StringBuffer("Hero{");
         sb.append("heroId=")
                 .append(heroId);
         sb.append(", name='")
-                .append(name.toString())
+                .append(name)
                 .append('\'');
         sb.append(", level=")
                 .append(level);
         sb.append(", animal=")
                 .append(animal.name());
+        sb.append(", weapons='")
+                .append(weapons)
+                .append('\'');
+        sb.append(", vocationClass=")
+                .append(vocationClass);
         sb.append('}');
         return sb.toString();
     }
