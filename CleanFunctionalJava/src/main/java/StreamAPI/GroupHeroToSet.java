@@ -36,8 +36,25 @@ public class GroupHeroToSet {
                 .entrySet()
                 .stream()
                 .max(Map.Entry.comparingByValue())
-                .orElseThrow(NoSuchElementException::new)
-                .getKey();
+                .map(Map.Entry::getKey)
+                .orElseThrow(NoSuchElementException::new);
         System.out.println(key);
+
+        //group by level, and produca separeted coma ckasses
+        final Map<Integer, String> collect2 = generateHeroes().stream()
+                .collect(groupingBy(Hero::getLevel, mapping(t -> t.getVocationClass()
+                        .name(), joining(" -> "))));
+        System.out.println(collect2);
+
+        //Most populat weapons, but not one weapon
+        final Optional<String> s = generateHeroes().stream()
+                .collect(groupingBy(Hero::getWeapons, counting()))
+                .entrySet()
+                .stream()
+                .reduce((e1, e2) -> e1.getValue() < e2.getValue() ? e2 :
+                        e1.getValue() > e2.getValue() ? e1 :
+                                new AbstractMap.SimpleImmutableEntry<>(null, e1.getValue()))
+                .map(Map.Entry::getKey);
+        System.out.println(s.get());
     }
 }

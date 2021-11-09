@@ -3,7 +3,6 @@ package data;
 
 import com.github.javafaker.Animal;
 import data.ENUMS.HeroClass;
-import data.ENUMS.HeroWeapons;
 
 final public class Hero implements Comparable<Hero> {
 
@@ -22,13 +21,13 @@ final public class Hero implements Comparable<Hero> {
         this.vocationClass = vocationClass;
     }
 
-    Hero(Integer heroId, String name, Integer level, Animal animal,String weapons,HeroClass vocationClass) {
+    Hero(Integer heroId, String name, Integer level, Animal animal, String weapons, HeroClass vocationClass) {
         this.heroId = heroId;
         this.name = name;
         this.level = level;
         this.animal = animal;
-        this.weapons= weapons;
-        this.vocationClass=vocationClass;
+        this.weapons = weapons;
+        this.vocationClass = vocationClass;
     }
 
     public Integer getHeroId() {
