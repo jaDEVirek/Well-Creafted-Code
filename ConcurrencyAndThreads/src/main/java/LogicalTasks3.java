@@ -14,7 +14,17 @@ public class LogicalTasks3 {
         System.out.println(ch - 'a');
 //        final Character swiss = usingMap("swiss");
 //        System.out.println(swiss);
-        System.out.println(firstNonRepeatable("swwiiss",false));
+        System.out.println(firstNonRepeatable("swwfiiss", false));
+        permutations("123");
+        String str2 = "Testowo";
+        System.out.println(str2.hashCode());
+        final String substring = str2.substring(0, 3);
+        System.out.println(substring.hashCode());
+        str2=substring + "s";
+        final String t = substring.concat("t");
+        System.out.println(str2.hashCode());
+        System.out.println(substring);
+        System.out.println(str2);
     }
 
 
@@ -34,31 +44,32 @@ public class LogicalTasks3 {
 
     static String firstNonRepeatable(String str, boolean ismap) {
 
-       if(!ismap){
+        if (!ismap) {
 
 
-        int charsNumb[] = new int[25];
-        Queue<Character> characterQueue = new LinkedList<>();
+            int charsNumb[] = new int[25];
+            Queue<Character> characterQueue = new LinkedList<>();
 
-        for (int i = 0; i < str.length(); i++) {
-            char ch = str.charAt(i);
-            characterQueue.add(ch);
+            for (int i = 0; i < str.length(); i++) {
+                char ch = str.charAt(i);
+                characterQueue.add(ch);
 
-            charsNumb[ch - 'a']++; //increase index for character ch it will be 'value' - 97
+                charsNumb[ch - 'a']++; //increase index for character ch it will be 'value' - 97
 
-            while (!characterQueue.isEmpty()) {
-                if (charsNumb[characterQueue.peek() - 'a'] > 1) {
-                    characterQueue.remove();
-                } else {
-                    break;
+                while (!characterQueue.isEmpty()) {
+                    if (charsNumb[characterQueue.peek() - 'a'] > 1) {
+                        characterQueue.remove();
+                    } else {
+                        break;
+                    }
                 }
             }
+            assert characterQueue.peek() != null;
+            return characterQueue.peek()
+                    .toString();
+        } else {
+            return usingMap(str);
         }
-           assert characterQueue.peek() != null;
-           return characterQueue.peek().toString();
-       }else{
-           return usingMap(str);
-       }
     }
 
     private static String usingMap(String str) {
@@ -73,6 +84,33 @@ public class LogicalTasks3 {
                 .get());
     }
 
+    private static int[] bubbleSort(int[] arr) {
+        final int length = arr.length;
+        boolean changed = false;
+        for (int i = 0; i < length - 1; i++) {
+            int curr = arr[i];
+            int next = arr[i + 1];
+            if (curr > next) {
+                arr[i] = next;
+                arr[i + 1] = curr;
+                changed = true;
+            }
+        }
+        return changed ? bubbleSort(arr) : arr;
+    }
 
+    public static void permutations(String str) {
+        permutate("", str);
+    }
 
+    private static void permutate(String prev, String str) {
+        int last = str.length();
+        if(last == 0){
+            System.out.println("Permutation:  "+prev );
+
+        }else
+        for (int i = 0; i < last; i++) {
+           permutate(prev+str.charAt(i),str.substring(0,i) + str.substring(i+1,last));
+        }
+    }
 }
