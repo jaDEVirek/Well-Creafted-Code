@@ -1,4 +1,8 @@
+import immutability.DeepClone;
+
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class SortingEx4 {
@@ -13,9 +17,16 @@ public class SortingEx4 {
         String toChange = "Unsorted Array";
         System.out.println(Arrays.toString(quickSort(data)));
 
-        final String collect = Arrays.stream(toChange.split(" "))
+        replaceWordsInString(toChange);
+    }
+
+    private static void replaceWordsInString(String toChange) {
+        final List<String> strings = Arrays.asList(toChange.split(" "));
+        Collections.reverse(strings);
+        final String collect = strings.stream()
                 .map(SomeSolutionsEx2::reverseString)
                 .collect(Collectors.joining(" "));
+
         System.out.println(collect);
     }
 

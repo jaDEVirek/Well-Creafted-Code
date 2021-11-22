@@ -12,6 +12,22 @@ public class ImmutableEx1 {
         System.out.println(str3);
     }
 
+    private static class Interest {
+        String name;
+
+        public Interest(String name) {
+            this.name = name;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+    }
+
 
     final class Address {
         /* street, city declaration */
@@ -37,8 +53,31 @@ public class ImmutableEx1 {
         }
     }
 
-    public class DeepClone extends Object implements Cloneable {
+    static class CloningExp implements Cloneable {
+        private String name;
+        private Integer age;
+        private Interest interest;
+
+        public CloningExp(String name, Integer age, Interest interest) {
+            this.name = name;
+            this.age = age;
+            this.interest = interest;
+        }
+
         @Override public Object clone() throws CloneNotSupportedException {
-            return super.clone();
+            final CloningExp clone = (CloningExp) super.clone();
+            clone.interest = new Interest(interest.getName());
+            return clone;
+        }
+
+        /**
+         * Wzorzec projektowy copy constructor to jedna z częściej wybieranych alternatyw dla klonowania obiektów. W tym wzorcu jeden z konstruktorów klasy przyjmuje obiekt, na podstawie którego inicjowany jest wewnętrzny stan obiektu. Nowo tworzony obiekt i obiekt przekazywany jako argument są zazwyczaj tego samego typu, jednak nie jest to wymóg.
+         */
+        public CloningExp(CloningExp copyCloning) {
+            //kopiowanie płytkie (shallow copy),
+            this.name = copyCloning.name;
+            this.age = copyCloning.age;
+            this.interest = copyCloning.interest;
         }
     }
+}

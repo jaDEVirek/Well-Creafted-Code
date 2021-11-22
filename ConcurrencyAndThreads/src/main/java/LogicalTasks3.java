@@ -25,6 +25,8 @@ public class LogicalTasks3 {
         System.out.println(str2.hashCode());
         System.out.println(substring);
         System.out.println(str2);
+        System.out.println("Permutations? :");
+        permutations("GOD");
     }
 
 

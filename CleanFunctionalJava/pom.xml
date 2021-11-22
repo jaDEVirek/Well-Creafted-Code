@@ -19,6 +19,33 @@
             <artifactId>javafaker</artifactId>
             <version>1.0.2</version>
         </dependency>
-    </dependencies>
+            <!-- Required for Function primitives -->
+            <dependency>
+                <groupId>com.google.cloud.functions</groupId>
+                <artifactId>functions-framework-api</artifactId>
+                <version>1.0.4</version>
+                <scope>provided</scope>
+            </dependency>
+        </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <!--
+                  Google Cloud Functions Framework Maven plugin
 
+                  This plugin allows you to run Cloud Functions Java code
+                  locally. Use the following terminal command to run a
+                  given function locally:
+
+                  mvn function:run -Drun.functionTarget=your.package.yourFunction
+                -->
+                <groupId>com.google.cloud.functions</groupId>
+                <artifactId>function-maven-plugin</artifactId>
+                <version>0.10.0</version>
+                <configuration>
+                    <functionTarget>functions.HelloWorld</functionTarget>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
