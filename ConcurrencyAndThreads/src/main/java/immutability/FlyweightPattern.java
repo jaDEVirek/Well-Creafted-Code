@@ -1,30 +1,26 @@
 package immutability;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 public class FlyweightPattern {
 
     private static final HashMap<String, Circle> circleMap = new HashMap();
 
     public static void main(String[] args) {
-
-
     }
 
     //FLyweight pattern using  null pointer
-    public static Shape getCircle(String color) {
-        Circle circle = (Circle) circleMap.get(color);
-
-        if (circle == null) {
-            circle = new Circle(color);
-            circleMap.put(color, circle);
+    public static Shape getCircle(String color){
+        if (!circleMap.containsKey(color)) {
+            circleMap.put(color, new Circle(color));
             System.out.println("Creating circle of color : " + color);
         }
-        return circle;
+        return circleMap.get(color);
     }
 
     public static Shape getCircleUsingCompose(String color) {
-        return (Shape) circleMap.computeIfAbsent(color, col-> {
+        return circleMap.computeIfAbsent(color, col-> {
             return new Circle(color);
         });
 
