@@ -82,7 +82,7 @@ public class SomeLambda {
 
         for (int i = 0; i < rows; i++) {
             for (int j = i + 1; j < cols; j++) {
-                System.out.println("Matrix: [" + i + "][" + j + "]");
+               // System.out.println("Matrix: [" + i + "][" + j + "]");
                 matrix[i][j] = matrix[i][j] + matrix[j][i];
                 matrix[j][i] = matrix[i][j] - matrix[j][i];
                 matrix[i][j] = matrix[i][j] - matrix[j][i];
