@@ -1,5 +1,6 @@
 package StreamAPI;
 
+import java.io.FileInputStream;
 import java.security.PrivilegedAction;
 import java.util.Arrays;
 import java.util.function.Supplier;
